@@ -17,7 +17,7 @@ package cmd
 
 import (
 	"fmt"
-
+	"github.com/matt-stam/todo/data"
 	"github.com/spf13/cobra"
 )
 
@@ -29,10 +29,12 @@ var addCmd = &cobra.Command{
 	Run: addRun,
 }
 
-func addRun(cmd *cobra.Command, args [] string) {
+func addRun(cmd *cobra.Command, args []string) {
+	items := []data.Item{};
 	for _, x := range args {
-		fmt.Println(x);
+		items = append(items, data.Item{Text:x});
 	}
+	fmt.Println(items);
 }
 
 func init() {

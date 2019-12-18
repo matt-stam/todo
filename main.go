@@ -1,5 +1,5 @@
 /*
-Copyright © 2019 Matt Stam
+Copyright © 2019 Matt Stam mattstam@live.com
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

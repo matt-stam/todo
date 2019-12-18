@@ -19,7 +19,6 @@ import (
   "fmt"
   "os"
   "github.com/spf13/cobra"
-
   homedir "github.com/mitchellh/go-homedir"
   "github.com/spf13/viper"
 
@@ -28,18 +27,15 @@ import (
 
 var cfgFile string
 
-
-// rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use: "todo",
 	Short: "todo is a CLI todo app",
 	Long: `Todo will help you get more done in less time. It's designed to make it easy to track, update, and complete your daily tasks.`,
 }
 
-// Execute adds all child commands to the root command and sets flags appropriately.
-// This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
-  if err := rootCmd.Execute(); err != nil {
+  err := rootCmd.Execute(); 
+  if err != nil {
     fmt.Println(err)
     os.Exit(1)
   }
