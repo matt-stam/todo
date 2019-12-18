@@ -17,6 +17,7 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 	"github.com/matt-stam/todo/data"
 	"github.com/spf13/cobra"
 )
@@ -30,12 +31,15 @@ var addCmd = &cobra.Command{
 }
 
 func addRun(cmd *cobra.Command, args []string) {
-	var items = []data.Item{};
+	items, err := data.ReadItems("/Users/Matt Stam/go/src/github.com/matt-stam/todo/todo-data.json");
+	if err != nil {
+		log.Printf("%v", err);
+	}
 	for _, x := range args {
 		items = append(items, data.Item{Text:x});
 	}
 	
-	err := data.SaveItems("/Users/Matt Stam/go/src/github.com/matt-stam/todo/todo-data.json", items);
+	err = data.SaveItems("/Users/Matt Stam/go/src/github.com/matt-stam/todo/todo-data.json", items);
 	if err != nil {
 		fmt.Errorf("%v", err);
 	}
