@@ -16,7 +16,6 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
 	"github.com/matt-stam/todo/data"
 	"github.com/spf13/cobra"
 )
@@ -30,11 +29,11 @@ var addCmd = &cobra.Command{
 }
 
 func addRun(cmd *cobra.Command, args []string) {
-	items := []data.Item{};
+	var items = []data.Item{};
 	for _, x := range args {
 		items = append(items, data.Item{Text:x});
 	}
-	fmt.Println(items);
+	data.SaveItems("x", items);
 }
 
 func init() {
