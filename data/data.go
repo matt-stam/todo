@@ -49,3 +49,14 @@ func (i *Item) SetPriority(pri int) {
 			i.Priority = 2;
 	}
 }
+
+func (i *Item) PrettyP() string {
+	if i.Priority == 1 {
+		return "(1)";
+	}
+	if i.Priority == 3 {
+		return "(3)";
+	}
+
+	return " ";
+}
