@@ -22,7 +22,6 @@ import (
 	"sort"
 	"github.com/matt-stam/todo/data"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 	"text/tabwriter"
 )
 
@@ -35,7 +34,7 @@ var listCmd = &cobra.Command{
 }
 
 func listRun(cmd *cobra.Command, args []string) {
-	items, err := data.ReadItems(viper.GetString("datafile"))
+	items, err := data.ReadItems(dataFile)
 	if err != nil {
 		log.Printf("%v", err);
 	}

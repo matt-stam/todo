@@ -20,7 +20,6 @@ import (
 	"log"
 	"github.com/matt-stam/todo/data"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
 // addCmd represents the add command
@@ -32,7 +31,7 @@ var addCmd = &cobra.Command{
 }
 
 func addRun(cmd *cobra.Command, args []string) {
-	items, err := data.ReadItems(viper.GetString("datafile"));
+	items, err := data.ReadItems(dataFile);
 	if err != nil {
 		log.Printf("%v", err);
 	}
@@ -42,7 +41,7 @@ func addRun(cmd *cobra.Command, args []string) {
 		items = append(items, item);
 	}
 	
-	err = data.SaveItems(viper.GetString("datafile"), items);
+	err = data.SaveItems(dataFile, items);
 	if err != nil {
 		fmt.Errorf("%v", err);
 	}

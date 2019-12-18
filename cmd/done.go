@@ -22,7 +22,6 @@ import (
 	"strconv";
 	"github.com/matt-stam/todo/data"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
 // doneCmd represents the done command
@@ -34,7 +33,7 @@ var doneCmd = &cobra.Command{
 }
 
 func doneRun(cmd *cobra.Command, args []string) {
-	items, err := data.ReadItems(viper.GetString("datafile"));
+	items, err := data.ReadItems(dataFile);
 	i, err := strconv.Atoi(args[0]);
 
 	if err != nil {
@@ -46,7 +45,7 @@ func doneRun(cmd *cobra.Command, args []string) {
 		fmt.Printf("%q %v\n", items[i-1].Text, "marked done");
 		
 		sort.Sort(data.ByPri(items));
-		data.SaveItems(viper.GetString("datafile"), items);
+		data.SaveItems(dataFile, items);
 	} else {
 		log.Println(i, "doesn't match any items");
 	}
