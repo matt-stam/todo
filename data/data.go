@@ -60,6 +60,9 @@ func (i *Item) PrettyP() string {
 	if i.Priority == 1 {
 		return "(1)";
 	}
+	if i.Priority == 2 {
+		return "(2)";
+	}
 	if i.Priority == 3 {
 		return "(3)";
 	}
@@ -69,4 +72,22 @@ func (i *Item) PrettyP() string {
 
 func (i *Item) Label() string {
 	return strconv.Itoa(i.position) + ".";
+}
+
+// ByPri implements sort.Interface for []Item based on the Priority and position field
+type ByPri []Item;
+
+func (s ByPri) Len() int { 
+	return len(s) 
+}
+
+func (s ByPri) Swap(i, j int) { 
+	s[i], s[j] = s[j], s[i]
+}
+
+func (s ByPri) Less(i, j int) bool {
+	if s[i].Priority == s[j].Priority {
+		return s[i].position < s[j].position;
+	}
+	return s[i].Priority < s[j].Priority;
 }

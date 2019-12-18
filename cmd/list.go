@@ -19,6 +19,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"sort"
 	"github.com/matt-stam/todo/data"
 	"github.com/spf13/cobra"
 	"text/tabwriter"
@@ -37,6 +38,8 @@ func listRun(cmd *cobra.Command, args []string) {
 	if err != nil {
 		log.Printf("%v", err);
 	}
+
+	sort.Sort(data.ByPri(items));
 
 	w := tabwriter.NewWriter(os.Stdout, 3, 0, 1, ' ', 0);
 	for _, i := range items {
