@@ -35,7 +35,7 @@ func addRun(cmd *cobra.Command, args []string) {
 		items = append(items, data.Item{Text:x});
 	}
 	
-	err := data.SaveItems("/Users/Matt Stam/.tododos.json", items);
+	err := data.SaveItems("/Users/Matt Stam/go/src/github.com/matt-stam/todo/todo-data.json", items);
 	if err != nil {
 		fmt.Errorf("%v", err);
 	}
