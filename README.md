@@ -1,10 +1,10 @@
-# todo
+# todo-cli
 
-A simple task manager CLI. Following the work of Steve Francia in his OSCON presentation.
+A simple task manager CLI. Following the work of [Steve Francia](https://github.com/spf13) in his OSCON presentation.
 
-Created with Cobra, a CLI framework used in Kubernetes, Docker, etc.
+Created with [Cobra](https://github.com/spf13/cobra), a popular CLI generating library used in Kubernetes, Docker, Hugo, etc.
 
-Todo will help you get more done in less time. It's designed to make it easy to track, update, and complete your daily tasks.
+Todo-cli will help you get more done in less time. It's designed to make it easy to track, update, and complete your daily tasks.
 
 Compile with 'go build'
 
@@ -16,13 +16,13 @@ Usage:
 
 Available Commands:
 
-    add         Add a new todo
+    add         Add a new Todo
 
-    done        Mark Item as Done
+    done        Mark Todo as Done
 
     help        Help about any command
 
-    list        list all todos
+    list        List all Todos
 
 
 
