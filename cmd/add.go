@@ -36,7 +36,9 @@ func addRun(cmd *cobra.Command, args []string) {
 		log.Printf("%v", err);
 	}
 	for _, x := range args {
-		items = append(items, data.Item{Text:x});
+		item := data.Item{Text: x};
+		item.SetPriority(priority);
+		items = append(items, item);
 	}
 	
 	err = data.SaveItems(dataFile, items);
@@ -45,8 +47,12 @@ func addRun(cmd *cobra.Command, args []string) {
 	}
 }
 
+var priority int;
+
 func init() {
 	rootCmd.AddCommand(addCmd)
+	
+	addCmd.Flags().IntVarP(&priority, "priority", "p", 2, "Priority: 1, 2, 3");
 
 	// Here you will define your flags and configuration settings.
 
