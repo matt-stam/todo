@@ -1,7 +1,7 @@
 package data
 
 import (
-	"fmt"
+	"io/ioutil"
 	"encoding/json"
 )
 
@@ -10,12 +10,16 @@ type Item struct {
 }
 
 func SaveItems(filename string, items []Item) error {
-	b, err := json.Marshal(items)
+	b, err := json.Marshal(items);
 	if err != nil {
 		return err;
 	}
 
-	fmt.Println(string(b));
+	err = ioutil.WriteFile(filename, b, 0644);
+	if err != nil {
+		return err;
+	}
+
 
 	return nil;
 }

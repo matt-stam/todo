@@ -16,6 +16,7 @@ limitations under the License.
 package cmd
 
 import (
+	"fmt"
 	"github.com/matt-stam/todo/data"
 	"github.com/spf13/cobra"
 )
@@ -33,7 +34,11 @@ func addRun(cmd *cobra.Command, args []string) {
 	for _, x := range args {
 		items = append(items, data.Item{Text:x});
 	}
-	data.SaveItems("x", items);
+	
+	err := data.SaveItems("/Users/Matt Stam/.tododos.json", items);
+	if err != nil {
+		fmt.Errorf("%v", err);
+	}
 }
 
 func init() {
