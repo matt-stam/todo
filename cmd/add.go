@@ -31,7 +31,7 @@ var addCmd = &cobra.Command{
 }
 
 func addRun(cmd *cobra.Command, args []string) {
-	items, err := data.ReadItems("/Users/Matt Stam/go/src/github.com/matt-stam/todo/todo-data.json");
+	items, err := data.ReadItems(dataFile);
 	if err != nil {
 		log.Printf("%v", err);
 	}
@@ -39,7 +39,7 @@ func addRun(cmd *cobra.Command, args []string) {
 		items = append(items, data.Item{Text:x});
 	}
 	
-	err = data.SaveItems("/Users/Matt Stam/go/src/github.com/matt-stam/todo/todo-data.json", items);
+	err = data.SaveItems(dataFile, items);
 	if err != nil {
 		fmt.Errorf("%v", err);
 	}

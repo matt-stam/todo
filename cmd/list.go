@@ -31,7 +31,7 @@ var listCmd = &cobra.Command{
 }
 
 func listRun(cmd *cobra.Command, args []string) {
-	items, err := data.ReadItems("/Users/Matt Stam/go/src/github.com/matt-stam/todo/todo-data.json")
+	items, err := data.ReadItems(dataFile)
 	if err != nil {
 		log.Printf("%v", err);
 	}

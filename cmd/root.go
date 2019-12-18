@@ -17,15 +17,16 @@ package cmd
 
 import (
   "fmt"
+  "log"
   "os"
   "github.com/spf13/cobra"
-  homedir "github.com/mitchellh/go-homedir"
+  "github.com/mitchellh/go-homedir"
   "github.com/spf13/viper"
 
 )
 
-
 var cfgFile string
+var dataFile string
 
 var rootCmd = &cobra.Command{
 	Use: "todo",
@@ -44,10 +45,12 @@ func Execute() {
 func init() {
   cobra.OnInitialize(initConfig)
 
-  // Here you will define your flags and configuration settings.
-  // Cobra supports persistent flags, which, if defined here,
-  // will be global for your application.
+  home, err := homedir.Dir();
+  if err != nil {
+    log.Println("Unable to detect home directory. Please set data file using --datafile.");
+  }
 
+  rootCmd.PersistentFlags().StringVar(&dataFile, "datafile", home+string(os.PathSeparator)+"go/src/github.com/matt-stam/todo/todo-data.json", "data file to store todos");
   rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.todo.yaml)")
 
 
