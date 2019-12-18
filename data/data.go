@@ -9,7 +9,8 @@ import (
 type Item struct {
 	Text string
 	Priority int
-	position int
+	Position int
+	Done bool
 }
 
 func SaveItems(filename string, items []Item) error {
@@ -39,7 +40,7 @@ func ReadItems(filename string)([]Item, error) {
 	}
 
 	for i, _ := range items {
-		items[i].position = i + 1;
+		items[i].Position = i + 1;
 	}
 
 	return items, nil; 
@@ -70,11 +71,18 @@ func (i *Item) PrettyP() string {
 	return " ";
 }
 
-func (i *Item) Label() string {
-	return strconv.Itoa(i.position) + ".";
+func (i *Item) PrettyDone() string {
+	if i.Done {
+		return "X";
+	}
+	return "";
 }
 
-// ByPri implements sort.Interface for []Item based on the Priority and position field
+func (i *Item) Label() string {
+	return strconv.Itoa(i.Position) + ".";
+}
+
+// ByPri implements sort.Interface for []Item based on the Priority and Position field
 type ByPri []Item;
 
 func (s ByPri) Len() int { 
@@ -86,8 +94,13 @@ func (s ByPri) Swap(i, j int) {
 }
 
 func (s ByPri) Less(i, j int) bool {
-	if s[i].Priority == s[j].Priority {
-		return s[i].position < s[j].position;
+	if s[i].Done != s[j].Done {
+		return s[i].Done;
 	}
-	return s[i].Priority < s[j].Priority;
+
+	if s[i].Priority != s[j].Priority {
+		return s[i].Priority < s[j].Priority;
+	}
+
+	return s[i].Position < s[j].Position;
 }
