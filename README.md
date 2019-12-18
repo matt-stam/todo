@@ -8,19 +8,19 @@ Todo will help you get more done in less time. It's designed to make it easy to 
 
 Usage:
 
-  todo [command]
+    todo [command]
 
 
 
 Available Commands:
 
-  add         Add a new todo
+    add         Add a new todo
 
-  done        Mark Item as Done
+    done        Mark Item as Done
 
-  help        Help about any command
+    help        Help about any command
 
-  list        list all todos
+    list        list all todos
 
 
 
@@ -30,9 +30,9 @@ Flags:
 
       --datafile string   data file to store todos (default "C:\\Users\\Matt Stam\\go/src/github.com/matt-stam/todo/todo-data.json")
 
-  -h, --help              help for todo
+    -h, --help              help for todo
 
-  -t, --toggle            Help message for toggle
+    -t, --toggle            Help message for toggle
 
 
 Use "todo [command] --help" for more information about a command.
