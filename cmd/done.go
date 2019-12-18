@@ -22,6 +22,7 @@ import (
 	"strconv";
 	"github.com/matt-stam/todo/data"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 // doneCmd represents the done command
@@ -33,7 +34,7 @@ var doneCmd = &cobra.Command{
 }
 
 func doneRun(cmd *cobra.Command, args []string) {
-	items, err := data.ReadItems(dataFile);
+	items, err := data.ReadItems(viper.GetString("datafile"));
 	i, err := strconv.Atoi(args[0]);
 
 	if err != nil {
@@ -45,32 +46,12 @@ func doneRun(cmd *cobra.Command, args []string) {
 		fmt.Printf("%q %v\n", items[i-1].Text, "marked done");
 		
 		sort.Sort(data.ByPri(items));
-		data.SaveItems(dataFile, items);
+		data.SaveItems(viper.GetString("datafile"), items);
 	} else {
 		log.Println(i, "doesn't match any items");
 	}
-	
-
-	// for i, item := range items {
-	// 	for _, j := range args {
-	// 		if j == item.Text {
-	// 			items[i].Done = true;
-	// 			fmt.Printf("\nMarked "+item.Text+" done.\n");
-	// 		}
-	// 	} 
-	// }
 }
 
 func init() {
 	rootCmd.AddCommand(doneCmd);
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// doneCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// doneCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
